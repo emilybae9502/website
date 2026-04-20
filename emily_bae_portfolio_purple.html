@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Emily Bae — Portfolio (Purple)</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #111114;
+  --black2: #1b1b20;
+  --black3: #222228;
+  --border: rgba(255,255,255,0.1);
+  --border2: rgba(255,255,255,0.18);
+  --green: #B794F4;
+  --green-dim: rgba(183,148,244,0.13);
+  --white: #ffffff;
+  --gray: rgba(255,255,255,0.58);
+  --gray2: rgba(255,255,255,0.35);
+}
+html { background: var(--black); }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+  /* 전체 페이지 세로 그라데이션 — 맨위 짙은 네이비블랙에서 아래로 약간 밝아짐 */
+  background:
+    linear-gradient(180deg,
+      #0d0916 0%,
+      #110d1e 18%,
+      #161228 36%,
+      #1a1530 54%,
+      #151026 72%,
+      #100d1c 90%,
+      #0c0914 100%);
+  
+  color: var(--white);
+  -webkit-text-size-adjust: 100%;
+}
+
+.page { max-width: 480px; margin: 0 auto; padding: 0 0 6rem; }
+
+/* ── COVER ── */
+.cover { position: relative; padding: 3rem 1.25rem 2.5rem; overflow: hidden; background: linear-gradient(145deg, #1e1030 0%, #13082a 50%, #0d0716 100%); }
+.cover-bg { display: none; }
+.cover-name { position: relative; z-index: 2; margin-bottom: 1.5rem; }
+.cover-name span { display: block; font-size: clamp(52px, 18vw, 88px); font-weight: 800; line-height: 0.88; color: var(--green); letter-spacing: -2px; opacity: 0.88; }
+.cover-content { position: relative; z-index: 3; }
+.cover-title { font-size: 13px; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.cover-desc { font-size: 20px; font-weight: 600; color: var(--white); line-height: 1.3; margin-bottom: 1.5rem; letter-spacing: -0.3px; }
+.cover-contact { display: flex; flex-direction: column; gap: 4px; }
+.cover-contact a { font-size: 12px; color: var(--gray2); text-decoration: none; letter-spacing: 0.3px; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--border); margin: 2rem 1.25rem; }
+
+/* ── SECTION ── */
+.section { padding: 0 1.25rem; margin-bottom: 2.5rem; }
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; }
+.section-title { font-size: 22px; font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+.section-body { font-size: 14px; color: var(--gray); line-height: 1.8; }
+
+/* ── STRENGTH CARDS ── */
+.strength-list { display: flex; flex-direction: column; gap: 10px; }
+.strength-card { background: linear-gradient(135deg, #1e1630 0%, #180f28 100%); border: 1px solid rgba(183,148,244,0.15); border-radius: 14px; padding: 1.1rem 1.1rem; cursor: default; transition: border-color 0.2s; }
+.strength-card:active { border-color: var(--green); }
+.strength-num { font-size: 10px; font-weight: 700; color: var(--green); letter-spacing: 1.5px; margin-bottom: 8px; }
+.strength-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.3; }
+.strength-body { font-size: 13px; color: var(--gray); line-height: 1.75; }
+.strength-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+.strength-tag { font-size: 10px; padding: 3px 9px; border-radius: 20px; background: var(--green-dim); color: var(--green); border: 1px solid rgba(204,255,0,0.25); }
+
+/* ── CAREER TIMELINE ── */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item { display: grid; grid-template-columns: 72px 1fr; gap: 0 14px; padding-bottom: 1.5rem; }
+.tl-left { text-align: right; padding-top: 3px; }
+.tl-period { font-size: 10px; color: var(--gray2); line-height: 1.5; letter-spacing: 0.3px; }
+.tl-right { border-left: 1px solid var(--border2); padding-left: 14px; position: relative; }
+.tl-right::before { content: ''; position: absolute; left: -4px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.tl-company { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--green); text-transform: uppercase; margin-bottom: 4px; }
+.tl-role { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px; line-height: 1.3; }
+.tl-sub { font-size: 12px; color: var(--gray); line-height: 1.6; }
+
+/* ── PROJECT CARDS ── */
+.project-list { display: flex; flex-direction: column; gap: 10px; }
+.project-card { background: linear-gradient(135deg, #1a1228 0%, #150e22 100%); border: 1px solid rgba(183,148,244,0.12); border-radius: 14px; overflow: hidden; }
+.project-header { padding: 1rem 1.1rem 0.75rem; border-bottom: 1px solid var(--border); }
+.project-brand { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--green); text-transform: uppercase; margin-bottom: 6px; }
+.project-title { font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.3; margin-bottom: 4px; }
+.project-concept { font-size: 12px; color: var(--gray2); font-style: italic; }
+.project-body { padding: 0.75rem 1.1rem; display: flex; flex-direction: column; gap: 7px; }
+.project-row { display: grid; grid-template-columns: 70px 1fr; gap: 6px; font-size: 12px; }
+.project-row-label { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); padding-top: 2px; }
+.project-row-val { color: var(--gray); line-height: 1.6; }
+.project-tags { padding: 0 1.1rem 1rem; display: flex; gap: 5px; flex-wrap: wrap; }
+.project-tag { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+
+/* ── EDUCATION ── */
+.edu-list { display: flex; flex-direction: column; gap: 10px; }
+.edu-card { background: linear-gradient(135deg, #1d1430 0%, #160f26 100%); border: 1px solid rgba(183,148,244,0.13); border-radius: 14px; padding: 1rem 1.1rem; }
+.edu-degree { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--green); text-transform: uppercase; margin-bottom: 5px; }
+.edu-school { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.edu-desc { font-size: 12px; color: var(--gray); line-height: 1.65; }
+
+/* ── GLOBAL EXP ── */
+.globe-list { display: flex; flex-direction: column; gap: 8px; }
+.globe-item { display: flex; gap: 12px; align-items: flex-start; padding: 0.875rem 1.1rem; background: linear-gradient(135deg, #1d1430 0%, #160f26 100%); border: 1px solid rgba(183,148,244,0.13); border-radius: 12px; }
+.globe-flag { font-size: 22px; flex-shrink: 0; line-height: 1; }
+.globe-info { flex: 1; }
+.globe-country { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+.globe-detail { font-size: 12px; color: var(--gray); line-height: 1.55; }
+
+/* ── CONTACT ── */
+.contact-box { margin: 0 1.25rem; background: linear-gradient(135deg, #221840 0%, #1a1035 100%); border: 1px solid rgba(183,148,244,0.3); border-radius: 14px; padding: 1.5rem 1.25rem; }
+.contact-headline { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 1rem; letter-spacing: -0.3px; }
+.contact-row { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.contact-row:last-child { border-bottom: none; }
+.contact-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green); min-width: 48px; }
+.contact-val { font-size: 13px; color: var(--gray); }
+
+/* ── NAV DOTS ── */
+.nav { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 100; }
+.nav-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+.nav-dot.active { background: var(--green); transform: scale(1.4); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover" id="sec-cover">
+    <div class="cover-name">
+      <span>EMILY</span>
+      <span>BAE</span>
+    </div>
+    <div class="cover-content">
+      <div class="cover-title">Brand Campaign Planner</div>
+      <div class="cover-desc">깊게 보라,<br>그리고 맘껏.</div>
+      <div class="cover-contact">
+        <a href="tel:010-5417-6282">010-5417-6282</a>
+        <a href="mailto:sj.emily.bae@gmail.com">sj.emily.bae@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- INTRO -->
+  <div style="background: linear-gradient(160deg,#16102a 0%,#110d20 100%); padding: 0.5rem 0 1rem;">
+  <div class="section" id="sec-intro">
+    <div class="section-label">About</div>
+    <div class="section-title">영어교육학 공부한<br>브랜드 캠페인 플래너</div>
+    <div class="section-body" style="margin-top:0.75rem;">
+      이화여대 응용언어학 석사 출신의 글로벌 캠페인 플래너. 이노션에서 Genesis, 삼성전자, BTS 등 럭셔리 & 글로벌 브랜드 캠페인을 기획하며, 언어와 문화를 넘나드는 브랜드 스토리텔링을 설계합니다.
+    </div>
+  </div><!-- /intro band -->
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STRENGTHS -->
+  <div style="background: linear-gradient(160deg,#1e1432 0%,#180f28 100%); padding: 0.5rem 0 1rem;">
+  <div class="section" id="sec-strength">
+    <div class="section-label">Core Strengths</div>
+    <div class="section-title">핵심 강점 4</div>
+
+    <div class="strength-list" style="margin-top:1rem;">
+
+      <div class="strength-card">
+        <div class="strength-num">01</div>
+        <div class="strength-title">영어교육학 전공 배경</div>
+        <div class="strength-body">이화여대 영어교육학 학·석사. 성인 EFL 학습자 34명 대상 6주간 스토리텔링 교육 임상 연구로 상호작용 능력 향상을 통계로 검증하며 학위 취득. 이론과 실제를 잇는 언어적 직관이 브랜드 메시지 설계의 무기가 됩니다.</div>
+        <div class="strength-tags">
+          <span class="strength-tag">응용언어학 석사</span>
+          <span class="strength-tag">임상 연구</span>
+          <span class="strength-tag">스터디파이 강의</span>
+          <span class="strength-tag">영어 창업경진대회 3위</span>
+        </div>
+      </div>
+
+      <div class="strength-card">
+        <div class="strength-num">02</div>
+        <div class="strength-title">글로벌 & 럭셔리 브랜드 캠페인 경험</div>
+        <div class="strength-body">이노션에서 Genesis & 삼성전자 담당. 완성도·퀄리티에 대한 집착적 관리, 3D 가상환경·Unreal Engine·AI 기반 Key Visual 등 새로운 크리에이티브 선제 도입. 프랑스 MATHEMATIC과의 브랜드 매니페스토 제작을 감독 없이 직접 디렉팅.</div>
+        <div class="strength-tags">
+          <span class="strength-tag">Genesis</span>
+          <span class="strength-tag">Samsung</span>
+          <span class="strength-tag">BTS</span>
+          <span class="strength-tag">Unreal Engine 3D</span>
+          <span class="strength-tag">글로벌 원보이스</span>
+        </div>
+      </div>
+
+      <div class="strength-card">
+        <div class="strength-num">03</div>
+        <div class="strength-title">문제 해결 의지 (난관 타개 능력)</div>
+        <div class="strength-body">3D 렌더링 지연 위기 시 기존 네트워크를 적재적소 투입해 마감 완수. 저예산 촬영 현장에서 주인의식으로 직접 발벗고 나서는 태도. 없던 일도 스스로 공부해 프로세스화하고 팀 내부 아카이브로 공유.</div>
+        <div class="strength-tags">
+          <span class="strength-tag">위기 대응</span>
+          <span class="strength-tag">주인의식</span>
+          <span class="strength-tag">빠른 학습</span>
+          <span class="strength-tag">프로세스화</span>
+        </div>
+      </div>
+
+      <div class="strength-card">
+        <div class="strength-num">04</div>
+        <div class="strength-title">기획 & 제안 역량</div>
+        <div class="strength-body">구조적 사고력을 바탕으로 이해관계자별 맞춤 문서 작성. Genesis 프로젝트에서 국·영문 보고서 동시 작성 및 외국인 임원 실시간 통역 담당. 외국계 대행사 3년간 CJ제일제당·우리금융그룹 등 다수 경쟁PT 수주.</div>
+        <div class="strength-tags">
+          <span class="strength-tag">구조적 사고</span>
+          <span class="strength-tag">영문 보고서</span>
+          <span class="strength-tag">경쟁PT 수주</span>
+          <span class="strength-tag">실시간 통역</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CAREER -->
+  <div style="background:linear-gradient(160deg,#130e24 0%,#0f0b1c 100%);padding:0.25rem 0 0.5rem;">
+  <div class="section" id="sec-career">
+    <div class="section-label">Career</div>
+    <div class="section-title">업무 경력</div>
+
+    <div class="timeline" style="margin-top:1.25rem;">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-period">2023.3<br>~ 현재</div></div>
+        <div class="tl-right">
+          <div class="tl-company">INNOCEAN WORLDWIDE</div>
+          <div class="tl-role">Global Campaign Planner</div>
+          <div class="tl-sub">Genesis, 삼성전자, BTS 글로벌·국내 캠페인 기획 및 실행. 오프라인 공간 경험, 개발 다큐멘터리, 커스터마이징 프로그램 등 다각적 브랜드 스토리텔링 설계. NY·LA Motor Show·Middle East 글로벌 권역 협업.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-period">2021.1<br>~2023.2</div></div>
+        <div class="tl-right">
+          <div class="tl-company">McCANN WORLDGROUP</div>
+          <div class="tl-role">Campaign Planner</div>
+          <div class="tl-sub">리테이너 계약 기반 연간 캠페인 기획 및 실행. TVC, Digital 광고 소재 제작 및 실무 커뮤니케이션. 다수 경쟁PT 참여 및 수주 (우리금융그룹, CJ제일제당 등).</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-period">2020.2<br>~2021.6</div></div>
+        <div class="tl-right">
+          <div class="tl-company">STUDYPIE</div>
+          <div class="tl-role">English Content Planner & Instructor</div>
+          <div class="tl-sub">영어교육 콘텐츠 제작 및 온라인 강의 진행. 영작문 첨삭 및 영어 말하기 1:1 교정 수업.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KEY PROJECTS -->
+  <div style="background:linear-gradient(160deg,#1c1430 0%,#160f28 100%);padding:0.25rem 0 0.5rem;">
+  <div class="section" id="sec-projects">
+    <div class="section-label">Key Projects</div>
+    <div class="section-title">주요 캠페인</div>
+
+    <div class="project-list" style="margin-top:1rem;">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-brand">GENESIS — Global</div>
+          <div class="project-title">GV70 EV FL Launch Film</div>
+          <div class="project-concept">"Luxe, in Every Touch"</div>
+        </div>
+        <div class="project-body">
+          <div class="project-row"><span class="project-row-label">Objective</span><span class="project-row-val">GV70 EV FL 글로벌 론칭 및 럭셔리 스펙 전달</span></div>
+          <div class="project-row"><span class="project-row-label">Role</span><span class="project-row-val">전략 기획 리드 / 제작 일정·예산 관리 / 캠페인 운영</span></div>
+        </div>
+        <div class="project-tags"><span class="project-tag">2024–2025</span><span class="project-tag">Global</span><span class="project-tag">Film</span><span class="project-tag">Key Visual</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-brand">GENESIS — Brand</div>
+          <div class="project-title">Brand Manifesto Film</div>
+          <div class="project-concept">"Disruption, Refined."</div>
+        </div>
+        <div class="project-body">
+          <div class="project-row"><span class="project-row-label">Objective</span><span class="project-row-val">브랜드 철학 시각화 — 독창적 추상 언어로 Bold Attitude 표현</span></div>
+          <div class="project-row"><span class="project-row-label">Role</span><span class="project-row-val">코어 컨셉 개발 / 프랑스 MATHEMATIC과 글로벌 프로덕션 디렉팅</span></div>
+        </div>
+        <div class="project-tags"><span class="project-tag">Dec 2025</span><span class="project-tag">Motion Graphics</span><span class="project-tag">Global Production</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-brand">GENESIS — Concept</div>
+          <div class="project-title">Neolun Concept Unveil (NY)</div>
+          <div class="project-concept">"Timeless Elegance"</div>
+        </div>
+        <div class="project-body">
+          <div class="project-row"><span class="project-row-label">Objective</span><span class="project-row-val">뉴욕 언베일 — GV90 미래 비전 글로벌 전달</span></div>
+          <div class="project-row"><span class="project-row-label">Role</span><span class="project-row-val">캠페인 기획 리드 / Unreal Engine Full 3D 영상 팀 최초 수행</span></div>
+        </div>
+        <div class="project-tags"><span class="project-tag">2024</span><span class="project-tag">Unreal Engine</span><span class="project-tag">3D</span><span class="project-tag">Event</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-brand">SAMSUNG — Global</div>
+          <div class="project-title">Bespoke AI Fairytales</div>
+          <div class="project-concept">"AI Fairytale" — 동화로 AI 기능을 라이프스타일로</div>
+        </div>
+        <div class="project-body">
+          <div class="project-row"><span class="project-row-label">Objective</span><span class="project-row-val">Bespoke AI 글로벌 론칭 사전 버즈 & 바이럴 확보</span></div>
+          <div class="project-row"><span class="project-row-label">Role</span><span class="project-row-val">AI 생성 소재 end-to-end 프로덕션 디렉팅 / 영문 카피라이팅</span></div>
+        </div>
+        <div class="project-tags"><span class="project-tag">2025</span><span class="project-tag">Generative AI</span><span class="project-tag">Viral</span><span class="project-tag">Global</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-brand">BTS — Global OOH</div>
+          <div class="project-title">BTS Comeback Take Over</div>
+          <div class="project-concept">"Arirang" — 광화문 랜드마크 전면 장악</div>
+        </div>
+        <div class="project-body">
+          <div class="project-row"><span class="project-row-label">Objective</span><span class="project-row-val">컴백을 글로벌 문화 현상으로 — 전 세계 랜드마크 미디어 파사드 20+ 운영</span></div>
+          <div class="project-row"><span class="project-row-label">Role</span><span class="project-row-val">교보생명 전략적 파트너십 확보 / 글로벌 리스크 관리 프로토콜 수립</span></div>
+        </div>
+        <div class="project-tags"><span class="project-tag">2026.3</span><span class="project-tag">OOH</span><span class="project-tag">Global 20+ Cities</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EDUCATION -->
+  <div style="background:linear-gradient(160deg,#130e24 0%,#0f0b1c 100%);padding:0.25rem 0 0.5rem;">
+  <div class="section" id="sec-edu">
+    <div class="section-label">Education</div>
+    <div class="section-title">학력 사항</div>
+
+    <div class="edu-list" style="margin-top:1rem;">
+      <div class="edu-card">
+        <div class="edu-degree">M.A. in Applied Linguistics</div>
+        <div class="edu-school">이화여자대학교, 2019–2021</div>
+        <div class="edu-desc">Dissertation: "The Effect of Conversational Storytelling Instruction on EFL Learners' Interactional Competence" — 성인 34명 대상 6주 임상 연구, 통계 검증</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">B.A. in English Education</div>
+        <div class="edu-school">이화여자대학교, 2014–2019</div>
+        <div class="edu-desc">영어교육학 전공. 미국 교환학생 (East Stroudsburg University, Pennsylvania)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- GLOBAL EXP -->
+  <div style="background:linear-gradient(160deg,#1a1230 0%,#150e26 100%);padding:0.25rem 0 0.5rem;">
+  <div class="section">
+    <div class="section-label">Global Experience</div>
+    <div class="section-title">해외 경험</div>
+
+    <div class="globe-list" style="margin-top:1rem;">
+      <div class="globe-item">
+        <div class="globe-flag">🇦🇺</div>
+        <div class="globe-info">
+          <div class="globe-country">Australia — Working Holiday</div>
+          <div class="globe-detail">2017.3–2018.1 · Brisbane. Japanese Restaurant Hall Manager. 다국적 손님과의 일상적 영어 소통으로 순간의 기류를 읽는 커뮤니케이션 능력 강화.</div>
+        </div>
+      </div>
+      <div class="globe-item">
+        <div class="globe-flag">🇺🇸</div>
+        <div class="globe-info">
+          <div class="globe-country">United States — Exchange Student</div>
+          <div class="globe-detail">2016.2–2016.12 · East Stroudsburg University, Pennsylvania. 고교 교환학생 (2010–2012 · West Scranton High School, Pennsylvania).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <div class="contact-box" id="sec-contact">
+    <div class="contact-headline">함께 일해요.</div>
+    <div class="contact-row">
+      <span class="contact-label">Tel</span>
+      <span class="contact-val">010-5417-6282</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">Email</span>
+      <span class="contact-val">sj.emily.bae@gmail.com</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">Based</span>
+      <span class="contact-val">Seoul, Korea</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- NAV DOTS -->
+<nav class="nav" id="nav">
+  <div class="nav-dot active" data-target="sec-cover"></div>
+  <div class="nav-dot" data-target="sec-intro"></div>
+  <div class="nav-dot" data-target="sec-strength"></div>
+  <div class="nav-dot" data-target="sec-career"></div>
+  <div class="nav-dot" data-target="sec-projects"></div>
+  <div class="nav-dot" data-target="sec-edu"></div>
+  <div class="nav-dot" data-target="sec-contact"></div>
+</nav>
+
+<script>
+const dots = document.querySelectorAll('.nav-dot');
+const sections = ['sec-cover','sec-intro','sec-strength','sec-career','sec-projects','sec-edu','sec-contact'].map(id => document.getElementById(id));
+
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    const target = document.getElementById(dot.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = sections.indexOf(entry.target);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: 0.4 });
+
+sections.forEach(s => { if (s) obs.observe(s); });
+</script>
+
+</body>
+</html>
